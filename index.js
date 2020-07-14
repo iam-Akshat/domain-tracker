@@ -4,8 +4,7 @@ const sendMail = require('./mailHandler');
 // const list  = require('domainList.json');
 require('dotenv').config();
 const list={
-    "main":"aksh.at",
-    "a":"akshatsethi.com"
+    "main":"www.google.com"
 }
 const testUrl = "https://api.godaddy.com/v1/domains/available"
 
