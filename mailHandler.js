@@ -16,14 +16,15 @@ const sendMail=async (res,fromMail,toMail)=>{
         html: `<h1>${JSON.stringify(res)}</h1>`,
       };
       console.log('mail sent')
-
-    sgMail.send(msg).then((s)=>{
+    try {
+        await sgMail.send(msg)
         return 1;
-    }).catch(e=>{
+    } catch (error) {
         console.log('this is from mail handler ');
-        console.log(e.response.body.errors);
+        console.log(error.response.body.errors);
         return 0;
-    });
+    }
+    
 }
 
 module.exports=sendMail;
