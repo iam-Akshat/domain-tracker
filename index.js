@@ -4,16 +4,17 @@ const sendMail = require('./mailHandler');
 // const list  = require('domainList.json');
 require('dotenv').config();
 const list={
-    "main":"google.com",
+    "main":"aksh.at",
+    "a":"akshatsethi.com"
 }
-const testUrl = "https://api.ote-godaddy.com/v1/domains/available"
+const testUrl = "https://api.godaddy.com/v1/domains/available"
 
 const fromMail="masterakshata@gmail.com"
 const toMail=fromMail 
 
 const checker=async (data,context)=>{
     try {
-       const [success,response]= await callGoDaddy(process.env.GO_TEST_KEY,process.env.GO_TEST_SECRET,list,testUrl);
+       const [success,response]= await callGoDaddy(process.env.GO_DADDY_KEY,process.env.GO_DADDY_SECRET,list,testUrl);
        //console.log(response)
        if(success){
         let mailsToBeSent=[]
@@ -31,9 +32,9 @@ const checker=async (data,context)=>{
     }
 }
 //for development debugging
-checker(1,2).then(a=>{
-    console.log('pls workd')
-})
+// checker(1,2).then(a=>{
+//     console.log('pls work')
+// })
 
 
 

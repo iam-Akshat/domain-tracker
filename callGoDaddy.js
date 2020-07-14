@@ -20,10 +20,11 @@ const callGoDaddy = async (key, secret,list,url) => {
     try {
         response=await axios.post(url, jsonToArr(list), config);
         success=1;
-        console.log('and was successfull')
         return [success,response.data.domains];
     } catch (error) {
-        return [success,Null];
+        console.log("Go daddy api error")
+        console.log(error)
+        return [success,null];
     }
 
 }
