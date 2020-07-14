@@ -1,10 +1,13 @@
-const sendMail = require('./mailHandler');
+
 const checkAvailbilityFromData=(responseArr)=>{
-    console.log('i am good');
+  //  console.log('i am good');
+    let availableDomains=[]
     responseArr.forEach(res => {
+        console.log(res)
         if(res.available){
-            sendMail(res);
+           availableDomains.push(res);
         }
     });
+    return availableDomains;
 }
 module.exports=checkAvailbilityFromData

@@ -10,17 +10,21 @@ const jsonToArr = obj => {
 
 
 const callGoDaddy = async (key, secret,list,url) => {
+   
     let config = {
         headers: {
             'Authorization': ` sso-key ${key}:${secret}`,
         },
     }
-
-    axios.post(url, jsonToArr(list), config).then(dat => {
-        check(dat.data.domains);
-    }).catch(e => {
-        console.log(e);
-    })
+    let success=0;
+    try {
+        response=await axios.post(url, jsonToArr(list), config);
+        success=1;
+        console.log('and was successfull')
+        return [success,response.data.domains];
+    } catch (error) {
+        return [success,Null];
+    }
 
 }
 
