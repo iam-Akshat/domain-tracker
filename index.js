@@ -1,6 +1,7 @@
 const callGoDaddy   = require('./callGoDaddy');
 const checkFromResponse = require('./availabiltyChecker');
 const sendMail = require('./mailHandler');
+const Promise.allSettled =require('./promeiseAllPolyfill');
 // const list  = require('domainList.json');
 require('dotenv').config();
 const list={
