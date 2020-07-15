@@ -1,11 +1,11 @@
 const callGoDaddy   = require('./callGoDaddy');
 const checkFromResponse = require('./availabiltyChecker');
 const sendMail = require('./mailHandler');
-const Promise.allSettled =require('./promeiseAllPolyfill');
+const PromiseallSettled =require('./promeiseAllPolyfill');
 // const list  = require('domainList.json');
 require('dotenv').config();
 const list={
-    "main":"www.google.com"
+    "main":"google.com"
 }
 const testUrl = "https://api.godaddy.com/v1/domains/available"
 
@@ -19,12 +19,16 @@ const checker=async (data,context)=>{
        if(success){
         let mailsToBeSent=[]
         const availableDomains= checkFromResponse(response);
-        availableDomains.forEach(domain=>{
-             mailsToBeSent.push(sendMail(domain,fromMail,toMail))   
-        })
-        Promise.allSettled(mailsToBeSent).then().catch(e=>{
-            console.log(e)
-        })
+        //console.log(availableDomains)
+        if(availableDomains.length>0){
+            availableDomains.forEach(domain=>{
+                mailsToBeSent.push(sendMail(domain,fromMail,toMail))  
+                console.log("mail sent") 
+           })
+           PromiseallSettled(mailsToBeSent).then().catch(e=>{
+               console.log(e)
+           })
+        }
        }
     
     } catch (error) {
@@ -32,9 +36,9 @@ const checker=async (data,context)=>{
     }
 }
 //for development debugging
-// checker(1,2).then(a=>{
-//     console.log('pls work')
-// })
+checker(1,2).then(a=>{
+    console.log('pls work')
+})
 
 
 
